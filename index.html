@@ -39,6 +39,8 @@ input[type=email] { width:100%; font-family:'Inter',sans-serif; font-size:16px; 
 input[type=email]:focus { border-color:var(--em); box-shadow:0 0 0 3px rgba(31,111,80,.14); }
 button { width:100%; margin-top:12px; font-family:'Inter',sans-serif; font-size:14px; font-weight:800; letter-spacing:2px; color:#fff; background:var(--em); border:none; border-radius:10px; padding:16px; cursor:pointer; }
 button:active { background:var(--em-dark); }
+.dlbtn { display:block; text-align:center; font-family:'Inter',sans-serif; font-size:15px; font-weight:800; letter-spacing:2px; color:#fff !important; background:var(--em); border-radius:10px; padding:17px 14px; text-decoration:none; }
+.dlbtn:active { background:var(--em-dark); }
 .micro { text-align:center; font-size:12px; color:var(--gray); margin-top:11px; }
 .confirm { display:none; text-align:center; padding:6px 2px; }
 .confirm .bigtick { width:52px; height:52px; margin:2px auto 14px; border-radius:50%; background:var(--em); color:#fff; font-size:26px; font-weight:800; display:flex; align-items:center; justify-content:center; }
@@ -81,34 +83,9 @@ button:active { background:var(--em-dark); }
   </div>
 
   <div class="card">
-    <!-- ============================================================
-         EMAIL OPT-IN FORM
-         Wire this to your email provider:
-         1) Replace the action below with your provider's form action URL
-            (Kit / Mailchimp / Flodesk embed action, etc.).
-         2) If your provider needs a different input name than "email",
-            update the name attribute.
-         3) The confirmation state below shows automatically on submit.
-            If your provider redirects to its own thank-you page instead,
-            you can delete the <script> block at the bottom.
-         ============================================================ -->
-    <form id="optin" method="POST" action="#" novalidate>
-      <input type="hidden" name="_subject" value="New cookbook opt-in">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://schneidur.github.io/crockpot-cookbook/?sent=1">
-      <input type="hidden" name="_autoresponse" value="Here is your copy of The High-Protein Crockpot Cookbook. Download it here: https://schneidur.github.io/crockpot-cookbook/cookbook.pdf and save it to your phone or computer. If you want a new recipe walkthrough every week, follow along at instagram.com/taylorschneidur. Enjoy! Taylor">
-      <div class="ask">Where should I send your cookbook?</div>
-      <input type="email" name="email" id="email" inputmode="email" autocomplete="email" placeholder="Your best email" required aria-label="Email address">
-      <button type="submit">SEND ME THE COOKBOOK</button>
-      <div class="micro">Free. Delivered straight to your inbox.</div>
-    </form>
-    <div class="confirm" id="confirm">
-      <div class="bigtick">&#10003;</div>
-      <h2>Check your email.</h2>
-      <p>Your cookbook is on its way. If it hasn't landed in a couple of minutes, check your promotions or spam folder, then move it to your inbox so you don't lose it.</p>
-      <p class="follow"><a href="https://www.instagram.com/taylorschneidur/" style="text-decoration:none;">Follow along: @taylorschneidur</a></p>
-    </div>
+    <div class="ask">Grab your free copy</div>
+    <a class="dlbtn" href="cookbook.pdf" download="The High-Protein Crockpot Cookbook.pdf">DOWNLOAD FREE COOKBOOK</a>
+    <div class="micro">Free. 76 pages. Save it to your phone or computer.</div>
   </div>
 
   <div class="trust">
@@ -119,29 +96,6 @@ button:active { background:var(--em-dark); }
 
 <div class="foot">&#169; 2026 Taylor Schneider &#183; The High-Protein Crockpot Cookbook</div>
 
-<script>
-(function () {
-  var form = document.getElementById('optin');
-  var confirmBox = document.getElementById('confirm');
-  // Email capture backend: FormSubmit -> Taylor's inbox, with an auto-response
-  // delivering the download link. Endpoint assembled at submit time so the
-  // address is not scrapable from the static HTML.
-  var ep = 'https://formsubmit.co/' + ['schneidur','fit'].join('') + String.fromCharCode(64) + 'gmail.com';
-  if (location.search.indexOf('sent=1') !== -1) {
-    form.style.display = 'none';
-    confirmBox.style.display = 'block';
-  }
-  form.addEventListener('submit', function (e) {
-    var email = document.getElementById('email');
-    if (!email.value || email.validity.typeMismatch || email.value.indexOf('@') < 1) {
-      e.preventDefault();
-      email.focus();
-      email.style.borderColor = '#A9603F';
-      return;
-    }
-    form.setAttribute('action', ep);
-  });
-})();
-</script>
+
 </body>
 </html>
