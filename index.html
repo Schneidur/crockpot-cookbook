@@ -35,8 +35,8 @@ h1 { font-family:'DM Serif Display',serif; font-weight:400; font-size:clamp(28px
 .item p b { font-weight:700; }
 .card { background:var(--cream); border:1px solid var(--creamline); border-radius:16px; padding:24px 20px; margin-top:26px; }
 .card .ask { font-size:16.5px; font-weight:700; text-align:center; margin-bottom:14px; }
-input[type=email] { width:100%; font-family:'Inter',sans-serif; font-size:16px; padding:14px 16px; border:1.5px solid #D8D2C6; border-radius:10px; background:#fff; color:var(--ink); outline:none; }
-input[type=email]:focus { border-color:var(--em); box-shadow:0 0 0 3px rgba(31,111,80,.14); }
+input[type=text], input[type=email] { width:100%; font-family:'Inter',sans-serif; font-size:16px; padding:14px 16px; border:1.5px solid #D8D2C6; border-radius:10px; background:#fff; color:var(--ink); outline:none; }
+input[type=text]:focus, input[type=email]:focus { border-color:var(--em); box-shadow:0 0 0 3px rgba(31,111,80,.14); }
 button { width:100%; margin-top:12px; font-family:'Inter',sans-serif; font-size:14px; font-weight:800; letter-spacing:2px; color:#fff; background:var(--em); border:none; border-radius:10px; padding:16px; cursor:pointer; }
 button:active { background:var(--em-dark); }
 .dlbtn { display:block; text-align:center; font-family:'Inter',sans-serif; font-size:15px; font-weight:800; letter-spacing:2px; color:#fff !important; background:var(--em); border-radius:10px; padding:17px 14px; text-decoration:none; }
@@ -83,9 +83,24 @@ button:active { background:var(--em-dark); }
   </div>
 
   <div class="card">
-    <div class="ask">Grab your free copy</div>
-    <a class="dlbtn" href="cookbook.pdf" download="The High-Protein Crockpot Cookbook.pdf">DOWNLOAD FREE COOKBOOK</a>
-    <div class="micro">Free. 76 pages. Save it to your phone or computer.</div>
+    <form id="optin" method="POST" action="https://formsubmit.co/schneidurfit@gmail.com" novalidate>
+      <input type="hidden" name="_subject" value="New cookbook opt-in">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://schneidur.github.io/crockpot-cookbook/?sent=1">
+      <input type="hidden" name="_autoresponse" value="Here is your copy of The High-Protein Crockpot Cookbook. Download it and save it to your phone or computer: https://schneidur.github.io/crockpot-cookbook/files/high-protein-crockpot-cookbook-4k7x2m9q.pdf . If you want a new recipe walkthrough every week, follow along at instagram.com/taylorschneidur. Enjoy! Taylor">
+      <div class="ask">Where should I send your cookbook?</div>
+      <input type="text" name="name" id="fname" autocomplete="given-name" placeholder="First name" required aria-label="First name" style="margin-bottom:10px">
+      <input type="email" name="email" id="email" inputmode="email" autocomplete="email" placeholder="Your best email" required aria-label="Email address">
+      <button type="submit">SEND ME THE COOKBOOK</button>
+      <div class="micro">Free. Delivered straight to your inbox.</div>
+    </form>
+    <div class="confirm" id="confirm">
+      <div class="bigtick">&#10003;</div>
+      <h2>Check your email.</h2>
+      <p>Your cookbook is on its way. If it hasn't landed in a couple of minutes, check your promotions or spam folder, then move it to your inbox so you don't lose it.</p>
+      <p class="follow"><a href="https://www.instagram.com/taylorschneidur/" style="text-decoration:none;">Follow along: @taylorschneidur</a></p>
+    </div>
   </div>
 
   <div class="trust">
@@ -97,5 +112,23 @@ button:active { background:var(--em-dark); }
 <div class="foot">&#169; 2026 Taylor Schneider &#183; The High-Protein Crockpot Cookbook</div>
 
 
+<script>
+(function () {
+  var form = document.getElementById('optin');
+  var confirmBox = document.getElementById('confirm');
+  if (location.search.indexOf('sent=1') !== -1) {
+    form.style.display = 'none';
+    confirmBox.style.display = 'block';
+  }
+  form.addEventListener('submit', function (e) {
+    var nm = document.getElementById('fname');
+    var email = document.getElementById('email');
+    var bad = false;
+    if (!nm.value.trim()) { nm.style.borderColor = '#A9603F'; bad = true; }
+    if (!email.value || email.indexOf === undefined || email.value.indexOf('@') < 1) { email.style.borderColor = '#A9603F'; bad = true; }
+    if (bad) { e.preventDefault(); }
+  });
+})();
+</script>
 </body>
 </html>
