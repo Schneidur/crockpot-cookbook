@@ -34,6 +34,8 @@ input[type=text], input[type=email] { width:100%; font-family:'Inter',sans-serif
 input[type=text]:focus, input[type=email]:focus { border-color:var(--em); box-shadow:0 0 0 3px rgba(31,111,80,.14); }
 button { width:100%; font-family:'Inter',sans-serif; font-size:14px; font-weight:800; letter-spacing:2px; color:#fff; background:var(--em); border:none; border-radius:10px; padding:16px; cursor:pointer; }
 button:active { background:var(--em-dark); }
+.dlbtn { display:block; width:100%; box-sizing:border-box; text-align:center; font-family:'Inter',sans-serif; font-size:14px; font-weight:800; letter-spacing:2px; color:#fff; background:var(--em); border:none; border-radius:10px; padding:16px; text-decoration:none; margin-top:16px; }
+.dlbtn:active { background:var(--em-dark); }
 .micro { text-align:center; font-size:12px; color:var(--gray); margin-top:11px; }
 .confirm { display:none; text-align:center; padding:6px 2px; }
 .confirm .bigtick { width:52px; height:52px; margin:2px auto 14px; border-radius:50%; background:var(--em); color:#fff; font-size:26px; font-weight:800; display:flex; align-items:center; justify-content:center; }
@@ -83,8 +85,9 @@ button:active { background:var(--em-dark); }
     </form>
     <div class="confirm" id="confirm">
       <div class="bigtick">&#10003;</div>
-      <h2>Check your email.</h2>
-      <p>Your cookbook is on its way. If it hasn't landed in a couple of minutes, check your promotions or spam folder, then move it to your inbox so you don't lose it.</p>
+      <h2>You're in.</h2>
+      <p>Tap below to grab your cookbook right now. We're also sending a copy to your inbox, so if that doesn't show up in a couple minutes, check promotions or spam.</p>
+      <a class="dlbtn" href="https://schneidur.github.io/crockpot-cookbook/files/high-protein-crockpot-cookbook-4k7x2m9q.pdf" download>DOWNLOAD THE COOKBOOK</a>
       <p class="follow"><a href="https://www.instagram.com/taylorschneidur/" style="text-decoration:none;">Follow along: @taylorschneidur</a></p>
     </div>
   </div>
